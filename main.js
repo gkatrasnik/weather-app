@@ -22,6 +22,7 @@ function filterData(data) {
   return filteredData;
 }
 
+//display data in DOM
 function displayData(data) {}
 
 //start program
