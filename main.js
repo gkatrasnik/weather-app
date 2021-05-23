@@ -6,7 +6,6 @@ async function getWeatherData(city) {
   const weatherData = await response.json();
   const newData = filterData(weatherData);
   displayData(newData); //make DOM display
-  console.log(newData);
 }
 
 //get object with filtered data
@@ -23,7 +22,23 @@ function filterData(data) {
 }
 
 //display data in DOM
-function displayData(data) {}
+function displayData(data) {
+  console.log(data);
+}
+
+//get input from user
+function readInput() {
+  const input = document.getElementById("input");
+  const inputValue = input.value;
+  return inputValue;
+}
 
 //start program
-let city = getWeatherData("beijing");
+
+const form = document.getElementById("form");
+
+form.addEventListener(`submit`, (e) => {
+  let currentCity = readInput();
+  e.preventDefault();
+  getWeatherData(currentCity);
+});
