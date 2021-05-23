@@ -21,6 +21,7 @@ function filterData(data) {
     description: data.weather[0].description,
     temp: Math.round(data.main.temp),
     wind: Math.round(data.wind.speed),
+    icon: data.weather[0].icon,
   };
   return filteredData;
 }
@@ -32,6 +33,7 @@ function displayData(data) {
   description.textContent = data.description;
   temperature.textContent = "Temperature: " + data.temp + "°C";
   wind.textContent = "Wind: " + data.wind + " m/s";
+  card.style.backgroundImage = `url('http://openweathermap.org/img/wn/${data.icon}@4x.png')`;
 }
 
 //get input from user
