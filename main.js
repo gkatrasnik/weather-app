@@ -30,8 +30,8 @@ function displayData(data) {
   cityName.textContent = data.city + ", " + data.country;
   weather.textContent = data.weather;
   description.textContent = data.description;
-  temperature.textContent = "temperature: " + data.temp + "°C";
-  wind.textContent = "wind: " + data.wind + " m/s";
+  temperature.textContent = "Temperature: " + data.temp + "°C";
+  wind.textContent = "Wind: " + data.wind + " m/s";
 }
 
 //get input from user
