@@ -16,6 +16,7 @@ async function getWeatherData(city) {
 function filterData(data) {
   const filteredData = {
     city: data.name,
+    country: data.sys.country,
     weather: data.weather[0].main,
     description: data.weather[0].description,
     temp: Math.round(data.main.temp),
@@ -26,7 +27,7 @@ function filterData(data) {
 
 //display data in DOM
 function displayData(data) {
-  cityName.textContent = data.city;
+  cityName.textContent = data.city + ", " + data.country;
   weather.textContent = data.weather;
   description.textContent = data.description;
   temperature.textContent = "temperature: " + data.temp + "°C";
