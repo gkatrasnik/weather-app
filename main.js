@@ -1,11 +1,15 @@
 //fetch data from appi, call filter func. and display func
 async function getWeatherData(city) {
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=5f59f1128a67d98410d4d6388a4ca819`
-  );
-  const weatherData = await response.json();
-  const newData = filterData(weatherData);
-  displayData(newData); //make DOM display
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=5f59f1128a67d98410d4d6388a4ca819`
+    );
+    const weatherData = await response.json();
+    const newData = filterData(weatherData);
+    displayData(newData);
+  } catch (err) {
+    alert("Search result not found");
+  }
 }
 
 //get object with filtered data
@@ -14,8 +18,8 @@ function filterData(data) {
     city: data.name,
     weather: data.weather[0].main,
     description: data.weather[0].description,
-    temp: data.main.temp,
-    wind: data.wind.speed,
+    temp: Math.round(data.main.temp),
+    wind: Math.round(data.wind.speed),
   };
   return filteredData;
 }
@@ -25,9 +29,8 @@ function displayData(data) {
   cityName.textContent = data.city;
   weather.textContent = data.weather;
   description.textContent = data.description;
-  temperature.textContent = data.temp;
-  wind.textContent = data.wind;
-  console.log(data);
+  temperature.textContent = "temperature: " + data.temp + "°C";
+  wind.textContent = "wind: " + data.wind + " m/s";
 }
 
 //get input from user
